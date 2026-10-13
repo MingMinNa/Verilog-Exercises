@@ -1,0 +1,16 @@
+*~
+*.out
+*.o
+*.pyc
+*.vcd
+*.xml
+sim_build
+
+db/
+incremental_db/
+output_files/
+simulation/
+
+# Others
+.vscode
+TEMP/
