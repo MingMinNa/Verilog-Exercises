@@ -4,6 +4,7 @@
 *.pyc
 *.vcd
 *.xml
+*.qws
 sim_build
 
 db/
