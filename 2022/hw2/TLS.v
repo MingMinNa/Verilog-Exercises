@@ -13,10 +13,10 @@ module TLS (
     output         Rout
 );
 
-parameter IDLE   = 2'd0;
-parameter GREEN  = 2'd1;
-parameter YELLOW = 2'd2;
-parameter RED    = 2'd3;
+localparam IDLE   = 2'd0;
+localparam GREEN  = 2'd1;
+localparam YELLOW = 2'd2;
+localparam RED    = 2'd3;
 
 reg [1:0] state;
 reg [3:0] count;

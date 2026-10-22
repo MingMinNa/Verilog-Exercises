@@ -8,10 +8,10 @@ module rails (
     output reg   result
 );
 
-parameter INIT  = 2'd0;
-parameter READ  = 2'd1;
-parameter CALC  = 2'd2;
-parameter CLEAR = 2'd3;
+localparam INIT   = 2'd0;
+localparam READ   = 2'd1;
+localparam OUTPUT = 2'd2;
+localparam CLEAR  = 2'd3;
 
 reg [1:0] state;
 reg [3:0] remaining;
@@ -76,12 +76,12 @@ always @(posedge clk or posedge reset) begin
                 end
 
                 if (remaining == 4'd1) 
-                    state <= CALC;
+                    state <= OUTPUT;
                 else
                     remaining <= remaining - 4'd1;
             end
 
-            CALC: begin
+            OUTPUT: begin
                 result <= is_possible;
                 valid  <= 1'b1;
                 state  <= CLEAR;
