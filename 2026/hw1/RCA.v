@@ -7,38 +7,23 @@ module RCA(
 	output        c_out
 );
 
-wire [3:0] Tc_out;
+wire [4:0] carry;
+genvar i;
 
-FA FA_0 (
-	.x(x[0]),
-	.y(y[0]),
-	.c_in(c_in),
-	.s(s[0]),
-	.c_out(Tc_out[0])
-);
+generate
+	for (i = 0; i < 4; i = i + 1) begin : FA_GEN
 
-FA FA_1 (
-	.x(x[1]),
-	.y(y[1]),
-	.c_in(Tc_out[0]),
-	.s(s[1]),
-	.c_out(Tc_out[1])
-);
+		FA FA_inst (
+			.x    (x[i]),
+			.y    (y[i]),
+			.c_in (carry[i]),
+			.s    (s[i]),
+			.c_out(carry[i+1])
+		);
+	end
+endgenerate
 
-FA FA_2 (
-	.x(x[2]),
-	.y(y[2]),
-	.c_in(Tc_out[1]),
-	.s(s[2]),
-	.c_out(Tc_out[2])
-);
-
-FA FA_3 (
-	.x(x[3]),
-	.y(y[3]),
-	.c_in(Tc_out[2]),
-	.s(s[3]),
-	.c_out(c_out)
-);
+assign carry[0] = c_in;
+assign c_out = carry[4];
 
 endmodule
